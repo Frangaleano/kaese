@@ -339,6 +339,7 @@
     box-sizing: border-box;
     border-radius: 20px;
     border: solid 3px black;
+    align-items: center;
   }
 
   .titulo-wpp {
@@ -362,6 +363,7 @@
     border-radius: 20px;
     justify-content: center;
     padding: 5px;
+    width: 150px;
     animation: shadowAnimationIn 1s infinite;
   }
 
@@ -393,6 +395,7 @@
     box-sizing: border-box;
     border-radius: 20px;
     border: solid 3px black;
+    align-items: center;
   }
 
   .titulo-instagram {
@@ -416,6 +419,7 @@
     border-radius: 20px;
     justify-content: center;
     padding: 5px;
+    width: 150px;
     animation: shadowAnimationIn 1s infinite;
   }
 
@@ -434,6 +438,7 @@
     box-sizing: border-box;
     border-radius: 20px;
     border: solid 3px black;
+    align-items: center;
   }
 
   .titulo-face {
@@ -451,6 +456,7 @@
     border-radius: 20px;
     justify-content: center;
     padding: 5px;
+    width: 150px;
     animation: shadowAnimationIn 1s infinite;
   }
 

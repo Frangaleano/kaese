@@ -26,33 +26,33 @@
 
             <nav class="navbar">
                 <div class="navbar-overlay" onclick="toggleMenuOpen()"></div>
-            
+
                 <button type="button" class="navbar-burger" onclick="toggleMenuOpen()">
                     <span class="material-icons">menu</span>
                 </button>
-            
+
                 <a class="index" href="./index.html">
                     <h1 class="navbar-title"><b>Kaese</b></h1>
                 </a>
-            
+
                 <nav class="navbar-menu">
                     <div>
                         <a href="#nosotros">
                             <button type="button" class="active">Nosotros</button>
                         </a>
-            
+
                         <a href="#section-menu">
                             <button type="button" class="active">Menú</button>
                         </a>
-            
+
                         <a href="#section-informacion">
                             <button type="button" class="active">Información</button>
                         </a>
-            
+
                         <a href="#section-contacto">
                             <button type="button" class="active">Contacto</button>
                         </a>
-            
+
                         <a href="#section-reparto">
                             <button type="button" class="active">Reparto</button>
                         </a>
@@ -72,21 +72,21 @@
         </script>
 
         <script type="text/javascript">
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 const links = document.querySelectorAll('.navbar-menu a');
-        
+
                 links.forEach(link => {
                     link.addEventListener('click', () => {
                         toggleMenuOpen(); // Cerrar el menú al hacer clic en un enlace
                     });
                 });
-        
+
                 const toggleMenuOpen = () => {
                     document.body.classList.toggle("open");
                 };
             });
         </script>
-        
+
 
 
         <main class="mainHome">
@@ -176,11 +176,12 @@
                             <h3 class="titulo-wpp">Whatsapp</h3>
                             <p class="text-wpp">Podes contactarnos directamente por whatsapp tocando el siguiente botón
                             </p>
+                            <a href="https://watext.me/1709271951282" target="_blank">
                             <button class="boton-wpp">
-                                <a href="https://watext.me/1709271951282" target="_blank">
                                     <img src="./whatsapp.svg" alt="whatsapp">
-                                </a>
+                               
                             </button>
+                             </a>
                         </div>
 
 
@@ -190,22 +191,22 @@
                             <h3 class="titulo-instagram">Instagram</h3>
                             <p class="text-instagram">Podes seguirnos en nuestro instagram para no perderte ninguna
                                 promocion!</p>
-                            <button class="boton-instagram">
-                                <a href="https://www.instagram.com/panprecocido.kaese/" target="_blank">
+                            <a href="https://www.instagram.com/panprecocido.kaese/" target="_blank">
+                                <button class="boton-instagram">
                                     <img src="./instagram.svg" alt="instagram">
-                                </a>
-                            </button>
+                                </button>
+                            </a>
                         </div>
 
                         <div class="card-face">
                             <h3 class="titulo-face">Facebook</h3>
                             <p class="text-wpp">También podes seguirnos en nuestra pagina de Facebook
                             </p>
+                            <a href="https://www.facebook.com/Gabylipoveski/photos/" target="_blank">
                             <button class="boton-face">
-                                <a href="https://www.facebook.com/Gabylipoveski/photos/" target="_blank">
                                     <img src="./facebook.png" alt="Facebook">
-                                </a>
-                            </button>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -220,9 +221,10 @@
                         <img class="img-reparto" src="./zonas.jpeg" alt="Third slide">
 
                         <p class="text-info"><b>
-                        Parte de los partidos de General San Martin y Tres de Febrero <br> Florida Oeste <br> parte
-                        de Munro <br>
-                        y Villa Martelli</b>
+                                Parte de los partidos de General San Martin y Tres de Febrero <br> Florida Oeste <br>
+                                parte
+                                de Munro <br>
+                                y Villa Martelli</b>
                         </p>
 
                         <img class="img-reparto" src="./envios.jpeg" alt="First slide">
