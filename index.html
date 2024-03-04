@@ -497,9 +497,6 @@
                 `;
 
 
-
-
-
                 subMenu.innerHTML = buttonsHTML;
 
                 subMenuVisible = true;
@@ -536,6 +533,192 @@
 
                 // Quita la clase 'active' al botón1 cuando se contrae el submenú
                 boton1.classList.remove('active');
+            }
+        }
+
+        function toggleSubMenuDos() {
+            event.preventDefault();
+            const subMenuDos = document.getElementById('subMenuDos');
+            const boton2 = document.getElementById('boton2');
+
+            if (!subMenuDosVisible) {
+                const buttonsHTML = `
+                <div class="div-botones-submenu" data-button-number="5">
+                    <div class="div-producto">
+                        <img class="img-productos" src="./pan-negro-item.png" alt="pan negro">
+                        <div class="div-parrafos">
+                            <button class="sub-menu-button" data-button-number="5">Pan negro</button>
+                            <p id="parrafos-detalles"><b>Cantidad</b>: 22U. aprox. por Kg.</p>
+                            <p id="parrafos-detalles"><b>Presentacion</b>: Bolsa de 2 Kg.</p>
+                            <div class="div-detalles">
+                                <p>$2500</p>
+                                <input class="radio-button" type="radio" name="pan negro" value="2500">
+                                <button class="counter-button" onclick="updateCounter(5, 'decrement')">-</button>
+                                <span class="counter-value">0</span>
+                                <button class="counter-button" onclick="updateCounter(5, 'increment')">+</button>
+                            </div>
+                        </div>   
+                    </div>    
+
+                    <div class="div-boton-agregar">
+                        <button class="boton-agregar" onclick="agregarAlPedido(5)">Agregar al pedido</button>
+                    </div>
+                </div>
+
+                <div class="div-botones-submenu" data-button-number="6">
+                    <div class="div-producto">
+                        <img class="img-productos" src="./figaza-item.png" alt="figaza">
+                        <div class="div-parrafos">
+                            <button class="sub-menu-button" data-button-number="6">Figaza</button>
+                            <p id="parrafos-detalles">Especiales para sandwich</p>
+                            <p id="parrafos-detalles"><b>Medida</b>: 6 x 6 cm.</p>
+                            <p id="parrafos-detalles"><b>Cantidad</b>: 20U. aprox. por Kg.</p>
+                            <p id="parrafos-detalles"><b>Presentacion</b>: Bolsa de 2 Kg.</p>
+                            <div class="div-detalles">
+                                <p>$2500</p>
+                                <input class="radio-button" type="radio" name="figaza" value="2500">
+                                <button class="counter-button" onclick="updateCounter(6, 'decrement')">-</button>
+                                <span class="counter-value">0</span>
+                                <button class="counter-button" onclick="updateCounter(6, 'increment')">+</button>
+                            </div>
+                        </div>   
+                    </div>    
+                               
+                    <div class="div-boton-agregar">
+                        <button class="boton-agregar" onclick="agregarAlPedido(6)">Agregar al pedido</button>
+                    </div>
+                </div>
+                `;
+
+
+                subMenuDos.innerHTML = buttonsHTML;
+
+                subMenuDosVisible = true;
+                subMenuDos.style.display = "flex";
+                subMenuDos.offsetHeight;
+                subMenuDos.style.opacity = "1";
+                subMenuDos.style.transform = "translateY(0)";
+                subMenuDos.style.visibility = "visible";
+                subMenuDos.style.flexDirection = "column";
+                subMenuDos.style.rowGap = "10px";
+                subMenuDos.style.alignItems = "center"
+
+                // Agrega la clase 'active' al botón1 cuando se despliega el submenú
+                boton2.classList.add('active');
+                subMenuDos.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                event.preventDefault();
+            } else {
+                const subMenuDosButtons = document.querySelectorAll('.menu-button');
+                subMenuDosButtons.forEach(button => {
+                    button.classList.remove('initial');
+                });
+                setTimeout(() => {
+                    subMenuDos.innerHTML = '';
+                }, subMenuDosButtons.length * 100);
+
+                subMenuDosVisible = false;
+
+                subMenuDos.style.opacity = "0";
+                subMenuDos.style.transform = "translateY(-20px)";
+                setTimeout(() => {
+                    subMenuDos.style.visibility = "hidden";
+                    subMenuDos.style.display = "none";
+                }, 800);
+
+                // Quita la clase 'active' al botón1 cuando se contrae el submenú
+                boton2.classList.remove('active');
+            }
+        }
+
+        function toggleSubMenuTres() {
+            event.preventDefault();
+            const subMenuTres = document.getElementById('subMenuTres');
+            const boton3 = document.getElementById('boton3');
+
+            if (!subMenuTresVisible) {
+                const buttonsHTML = `
+                <div class="div-botones-submenu" data-button-number="7">
+                    <div class="div-producto" style="margin-bottom: 12px;">
+                        <img class="img-productos" src="./chipa-item.png" alt="chipá">
+                        <div class="div-parrafos">
+                            <button class="sub-menu-button" data-button-number="7">Chipá</button>
+                            <p id="parrafos-detalles"><b>Presentacion</b>: Bolsa de 1 Kg.</p>
+                            <div class="div-detalles">
+                                <p>$6000</p>
+                                <input class="radio-button" type="radio" name="chipa" value="6000">
+                                <button class="counter-button" onclick="updateCounter(7, 'decrement')">-</button>
+                                <span class="counter-value">0</span>
+                                <button class="counter-button" onclick="updateCounter(7, 'increment')">+</button>
+                            </div>
+                        </div>   
+                    </div>    
+
+                    <div class="div-boton-agregar">
+                        <button class="boton-agregar" onclick="agregarAlPedido(7)">Agregar al pedido</button>
+                    </div>
+                </div>
+
+                <div class="div-botones-submenu" data-button-number="8">
+                    <div class="div-producto">
+                        <img class="img-productos" src="./medialunas-item.png" alt="medialunas">
+                        <div class="div-parrafos">
+                            <button class="sub-menu-button" data-button-number="8">Medialunas</button>
+                            <p id="parrafos-detalles"><b>Peso</b>: 55grs. aprox.</p>
+                            <p id="parrafos-detalles"><b>Presentacion</b>: Bolsa x36 Unidades</p>
+                            <p id="parrafos-detalles"><b>Almibar bonificado</b></p>
+                            <div class="div-detalles">
+                                <p>$2440</p>
+                                <input class="radio-button" type="radio" name="medialunas" value="2440">
+                                <button class="counter-button" onclick="updateCounter(8, 'decrement')">-</button>
+                                <span class="counter-value">0</span>
+                                <button class="counter-button" onclick="updateCounter(8, 'increment')">+</button>
+                            </div>
+                        </div>   
+                    </div>    
+                               
+                    <div class="div-boton-agregar">
+                        <button class="boton-agregar" onclick="agregarAlPedido(8)">Agregar al pedido</button>
+                    </div>
+                </div>
+                `;
+
+
+                subMenuTres.innerHTML = buttonsHTML;
+
+                subMenuTresVisible = true;
+                subMenuTres.style.display = "flex";
+                subMenuTres.offsetHeight;
+                subMenuTres.style.opacity = "1";
+                subMenuTres.style.transform = "translateY(0)";
+                subMenuTres.style.visibility = "visible";
+                subMenuTres.style.flexDirection = "column";
+                subMenuTres.style.rowGap = "10px";
+                subMenuTres.style.alignItems = "center"
+
+                // Agrega la clase 'active' al botón1 cuando se despliega el submenú
+                boton3.classList.add('active');
+                subMenuTres.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                event.preventDefault();
+            } else {
+                const subMenuTresButtons = document.querySelectorAll('.menu-button');
+                subMenuTresButtons.forEach(button => {
+                    button.classList.remove('initial');
+                });
+                setTimeout(() => {
+                    subMenuTres.innerHTML = '';
+                }, subMenuTresButtons.length * 100);
+
+                subMenuTresVisible = false;
+
+                subMenuTres.style.opacity = "0";
+                subMenuTres.style.transform = "translateY(-20px)";
+                setTimeout(() => {
+                    subMenuTres.style.visibility = "hidden";
+                    subMenuTres.style.display = "none";
+                }, 800);
+
+                // Quita la clase 'active' al botón1 cuando se contrae el submenú
+                boton3.classList.remove('active');
             }
         }
 
