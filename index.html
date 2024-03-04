@@ -87,11 +87,24 @@
 
         <main class="mainHome">
 
+            <button id="hacerPedidoButton" class="boton-pedido" onclick="enviarPedidoWhatsApp()"
+                style="display: none;">Hacer
+                Pedido</button>
+
+            <button id="tuPedidoBtn" class="boton-pedido" style="display: none;" onclick="toggleDropdown()">Tu Pedido
+                <span id="flecha" class="flecha-abajo"></span>
+            </button>
+
+            <div id="pedidoDropdown" class="dropdown-content" style="display: none;"></div>
+
+            <div id="total" class="total">$0.00</div>
+
             <div class="div-boton-wsp">
-            <a id="ancla-wsp" href="https://watext.me/1709271951282" target="_blank">
-                <img class="icono-wsp" src="./whatsapp.png" alt="icono wsp">
-            </a>
-</div>
+                <a id="ancla-wsp" href="https://watext.me/1709271951282" target="_blank">
+                    <img class="icono-wsp" src="./whatsapp.png" alt="icono wsp">
+                </a>
+            </div>
+
             <section id="nosotros">
 
                 <div class="card">
@@ -110,8 +123,40 @@
 
                 <p id="menu-title" onclick="toggleMenuSection()"><b>Menú</b></p>
 
-                <p class="text-menu">Somos un emprendimiento familiar que tiene como meta proveer a tu negocio de
+                <p id="parrafo-menu">Somos un emprendimiento familiar que tiene como meta proveer a tu negocio de
                     productos innovadores y diferenciales.</p>
+
+
+                <div class="menu-section" id="menu-section">
+
+                    <div class="menu-button-container">
+
+                        <p>Selecciona una sección para ver los productos!</p>
+
+                        <button class="menu-button main-menu-button" id="boton1" onclick="toggleSubMenu()">Linea
+                            Pre-cocidos</button>
+                        <div id="subMenu" class="sub-menu">
+                        </div>
+
+                        <button class="menu-button main-menu-button" id="boton2" onclick="toggleSubMenuDos()">Linea
+                            Cocidos</button>
+                        <div id="subMenuDos" class="sub-menu-dos">
+                        </div>
+
+                        <button class="menu-button main-menu-button" id="boton3" onclick="toggleSubMenuTres()">Linea
+                            Crudos-Congelados</button>
+                        <div id="subMenuTres" class="sub-menu-tres">
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
 
                 <div class="carousel-inner" id="hidden">
                     <div class="carousel-item">
@@ -142,7 +187,7 @@
                 </h2>
                 <img class="ventajas" src="./ventajas.webp" alt="ventajas">
 
-                
+
                 <h2 class="titulo-informacion" style="margin-top: 30px;">Conservación
                 </h2>
                 <p class="texto-ventajas" style="margin-top: 0px;">+2 días en temperatura ambiente.<br>
@@ -182,11 +227,11 @@
                             <p class="text-wpp">Podes contactarnos directamente por whatsapp tocando el siguiente botón
                             </p>
                             <a href="https://watext.me/1709271951282" target="_blank">
-                            <button class="boton-wpp">
+                                <button class="boton-wpp">
                                     <img src="./whatsapp.svg" alt="whatsapp">
-                               
-                            </button>
-                             </a>
+
+                                </button>
+                            </a>
                         </div>
 
 
@@ -208,7 +253,7 @@
                             <p class="text-wpp">También podes seguirnos en nuestra pagina de Facebook
                             </p>
                             <a href="https://www.facebook.com/Gabylipoveski/photos/" target="_blank">
-                            <button class="boton-face">
+                                <button class="boton-face">
                                     <img src="./facebook.png" alt="Facebook">
                                 </button>
                             </a>
@@ -269,6 +314,17 @@
     <script>
 
 
+        let subMenuVisible = false;
+        let subMenuDosVisible = false;
+        let subMenuTresVisible = false;
+        let productos = [];
+        let preciosTotalesProductos = [0];
+        let counters = {};
+        let selectedItems = [];
+        let total = 0;
+        let totalProductos = 0;
+
+
         const carouselInner = document.querySelector('.carousel-inner');
         const items = document.querySelectorAll('.carousel-item');
 
@@ -280,6 +336,473 @@
             const translateValue = -currentIndex * 100 + '%';
             carouselInner.style.transform = 'translateX(' + translateValue + ')';
         }, 1500);
+
+
+        function toggleMenuSection() {
+            const menuProductos = document.getElementById("menu-section");
+            const tituloMenu = document.getElementById("menu-title");
+            const carousel = document.getElementById("hidden")
+            const total = document.getElementById("total")
+            const parrafoMenu = document.getElementById("parrafo-menu")
+
+            menuProductos.classList.toggle("visible");
+
+            if (menuProductos.classList.contains("visible")) {
+                // Mostrar la sección del menú
+                menuProductos.style.display = "flex";
+                menuProductos.offsetHeight; // Activar reflows
+                menuProductos.style.opacity = "1";
+                menuProductos.style.transform = "translateY(0)";
+                menuProductos.style.visibility = "visible";
+                carousel.style.display = "none"
+                tituloMenu.style.backgroundColor = "rgba(207, 146, 30, 1)";
+                tituloMenu.style.color = "white"
+                tituloMenu.style.animation = "none"
+                total.style.display = "flex"
+                total.style.opacity = "1"
+                parrafoMenu.style.display = "none"
+            } else {
+                menuProductos.style.opacity = "0";
+                menuProductos.style.transform = "translateY(-20px)";
+                total.style.display = "none"
+                total.style.opacity = "0"
+                setTimeout(() => {
+                    menuProductos.style.visibility = "hidden";
+                    menuProductos.style.display = "none"
+                    carousel.style.display = "flex"
+                }, 500); // Establecer un tiempo de espera para ocultar después de la animación
+
+                tituloMenu.style.backgroundColor = "transparent";
+                tituloMenu.style.animation = "shadowAnimation 2s infinite"
+                tituloMenu.style.color = "#26B884"
+                parrafoMenu.style.display = "block"
+            }
+        }
+
+        function selectButton(buttonNumber) {
+            const container = document.querySelector('.menu-button-container');
+            const allButtons = container.querySelectorAll('.menu-button');
+
+            allButtons.forEach((button, index) => {
+                button.classList.remove('active');
+                if (index + 1 === buttonNumber) {
+                    event.preventDefault();
+                    button.classList.add('active');
+                }
+            });
+        }
+
+        function toggleSubMenu() {
+            event.preventDefault();
+            const subMenu = document.getElementById('subMenu');
+            const boton1 = document.getElementById('boton1');
+
+            if (!subMenuVisible) {
+                const buttonsHTML = `
+                <div class="div-botones-submenu" data-button-number="1">
+                    <div class="div-producto">
+                        <img class="img-productos" src="./cuadraditas-item.png" alt="galleta grasa">
+                        <div class="div-parrafos">
+                            <button class="sub-menu-button" data-button-number="1">Galleta</button>
+                            <p id="parrafos-detalles">galletas de grasa para venta por peso</p>
+                            <p id="parrafos-detalles"><b>Medida</b>: 3 - 4 cm.</p>
+                            <p id="parrafos-detalles"><b>Cantidad</b>: 20U. aprox. por Kg.</p>
+                            <p id="parrafos-detalles"><b>Presentacion</b>: Bolsa de 5 Kg.</p>
+                            <div class="div-detalles">
+                                <p>$1640</p>
+                                <input class="radio-button" type="radio" name="galleta" value="1640">
+                                <button class="counter-button" onclick="updateCounter(1, 'decrement')">-</button>
+                                <span class="counter-value">0</span>
+                                <button class="counter-button" onclick="updateCounter(1, 'increment')">+</button>
+                            </div>
+                        </div>   
+                    </div>    
+
+                    <div class="div-boton-agregar">
+                        <button class="boton-agregar" onclick="agregarAlPedido(1)">Agregar al pedido</button>
+                    </div>
+                </div>
+
+                <div class="div-botones-submenu" data-button-number="2">
+                    <div class="div-producto">
+                        <img class="img-productos" src="./miñon-item.png" alt="miñon">
+                        <div class="div-parrafos">
+                            <button class="sub-menu-button" data-button-number="2">Miñon</button>
+                            <p id="parrafos-detalles">Pan especial para restaurant y viandas</p>
+                            <p id="parrafos-detalles"><b>Medida</b>: 4 - 5 cm.</p>
+                            <p id="parrafos-detalles"><b>Cantidad</b>: 28U. aprox. por Kg.</p>
+                            <p id="parrafos-detalles"><b>Presentacion</b>: Bolsa de 5 Kg.</p>
+                            <div class="div-detalles">
+                                <p>$1440</p>
+                                <input class="radio-button" type="radio" name="miñon" value="1440">
+                                <button class="counter-button" onclick="updateCounter(2, 'decrement')">-</button>
+                                <span class="counter-value">0</span>
+                                <button class="counter-button" onclick="updateCounter(2, 'increment')">+</button>
+                            </div>
+                        </div>   
+                    </div>    
+                               
+                    <div class="div-boton-agregar">
+                        <button class="boton-agregar" onclick="agregarAlPedido(2)">Agregar al pedido</button>
+                    </div>
+                </div>
+
+                <div class="div-botones-submenu" data-button-number="3">
+                    <div class="div-producto">
+                        <img class="img-productos" src="./milonga-item.png" alt="milonga">
+                        <div class="div-parrafos">
+                            <button class="sub-menu-button" data-button-number="3">Milonga</button>
+                            <p id="parrafos-detalles">Pan clásico para venta al peso y sandwicheria</p>
+                            <p id="parrafos-detalles"><b>Medida</b>: 12 - 13 cm.</p>
+                            <p id="parrafos-detalles"><b>Cantidad</b>: 11U. aprox. por Kg.</p>
+                            <p id="parrafos-detalles"><b>Presentacion</b>: Bolsa de 5 Kg.</p>
+                            <div class="div-detalles">
+                                <p>$1440</p>
+                                <input class="radio-button" type="radio" name="milonga" value="1440">
+                                <button class="counter-button" onclick="updateCounter(3, 'decrement')">-</button>
+                                <span class="counter-value">0</span>
+                                <button class="counter-button" onclick="updateCounter(3, 'increment')">+</button>
+                            </div>
+                        </div>   
+                    </div>    
+                               
+                    <div class="div-boton-agregar">
+                        <button class="boton-agregar" onclick="agregarAlPedido(3)">Agregar al pedido</button>
+                    </div>
+                </div>
+
+                <div class="div-botones-submenu" data-button-number="4">
+                    <div class="div-producto">
+                        <img class="img-productos" src="./flautita-item.png" alt="flautita">
+                        <div class="div-parrafos">
+                            <button class="sub-menu-button" data-button-number="3">Flauta</button>
+                            <p id="parrafos-detalles">Pan especial para sanwicheria</p>
+                            <p id="parrafos-detalles"><b>Medida</b>: 17 - 18 cm.</p>
+                            <p id="parrafos-detalles"><b>Cantidad</b>: 7U. aprox. por Kg.</p>
+                            <p id="parrafos-detalles"><b>Presentacion</b>: Bolsa de 5 Kg.</p>
+                            <div class="div-detalles">
+                                <p>$1440</p>
+                                <input class="radio-button" type="radio" name="flauta" value="1440">
+                                <button class="counter-button" onclick="updateCounter(4, 'decrement')">-</button>
+                                <span class="counter-value">0</span>
+                                <button class="counter-button" onclick="updateCounter(4, 'increment')">+</button>
+                            </div>
+                        </div>   
+                    </div>    
+                               
+                    <div class="div-boton-agregar">
+                        <button class="boton-agregar" onclick="agregarAlPedido(4)">Agregar al pedido</button>
+                    </div>
+                </div>
+                `;
+
+
+
+
+
+                subMenu.innerHTML = buttonsHTML;
+
+                subMenuVisible = true;
+                subMenu.style.display = "flex";
+                subMenu.offsetHeight;
+                subMenu.style.opacity = "1";
+                subMenu.style.transform = "translateY(0)";
+                subMenu.style.visibility = "visible";
+                subMenu.style.flexDirection = "column";
+                subMenu.style.rowGap = "10px";
+                subMenu.style.alignItems = "center"
+
+                // Agrega la clase 'active' al botón1 cuando se despliega el submenú
+                boton1.classList.add('active');
+                subMenu.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                event.preventDefault();
+            } else {
+                const subMenuButtons = document.querySelectorAll('.menu-button');
+                subMenuButtons.forEach(button => {
+                    button.classList.remove('initial');
+                });
+                setTimeout(() => {
+                    subMenu.innerHTML = '';
+                }, subMenuButtons.length * 100);
+
+                subMenuVisible = false;
+
+                subMenu.style.opacity = "0";
+                subMenu.style.transform = "translateY(-20px)";
+                setTimeout(() => {
+                    subMenu.style.visibility = "hidden";
+                    subMenu.style.display = "none";
+                }, 800);
+
+                // Quita la clase 'active' al botón1 cuando se contrae el submenú
+                boton1.classList.remove('active');
+            }
+        }
+
+        function updateCounter(buttonNumber, action) {
+            const counterValue = document.querySelector(`.div-botones-submenu[data-button-number="${buttonNumber}"] .counter-value`);
+            const selectedInput = document.querySelector(`.div-botones-submenu[data-button-number="${buttonNumber}"] input:checked`);
+
+            if (counterValue && selectedInput && selectedInput.value) {
+                if (!counters[buttonNumber]) {
+                    counters[buttonNumber] = 0;
+                }
+
+                let itemPrice = parseFloat(selectedInput.value);
+
+                switch (action) {
+                    case 'increment':
+                        counters[buttonNumber]++;
+                        total += itemPrice;
+                        break;
+                    case 'decrement':
+                        if (counters[buttonNumber] > 0) {
+                            counters[buttonNumber]--;
+                            total -= itemPrice;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                counterValue.textContent = counters[buttonNumber];
+            }
+
+        }
+
+        function agregarAlPedido(buttonNumber) {
+            const itemNameElement = document.querySelector(`.div-botones-submenu[data-button-number="${buttonNumber}"] .sub-menu-button`);
+            const selectedInputElement = document.querySelector(`.div-botones-submenu[data-button-number="${buttonNumber}"] input:checked`);
+
+            if (!itemNameElement || !selectedInputElement) {
+                console.error('No se encontraron elementos necesarios para agregar al pedido');
+                return;
+            }
+
+            const itemName = itemNameElement.textContent;
+            const itemPrice = parseFloat(selectedInputElement.value);
+            const itemCount = counters[buttonNumber];
+
+            const precioTotalProducto = itemPrice * itemCount;
+
+            const pedido = {
+                producto: {
+                    nombre: itemName,
+                    cantidad: itemCount,
+                    precio: itemPrice * itemCount,
+                    precioTotal: precioTotalProducto
+                }
+            };
+
+            productos.push(pedido);
+
+            localStorage.setItem('pedido', JSON.stringify(productos));
+
+            // Reiniciar el contador y el input
+            const counterValue = document.querySelector(`.div-botones-submenu[data-button-number="${buttonNumber}"] .counter-value`);
+            if (counterValue) {
+                counterValue.textContent = 0;
+            }
+
+            // Deseleccionar el input
+            selectedInputElement.checked = false;
+
+            // Actualizar el total en la interfaz
+            actualizarTotal();
+            // Actualizar el total del pedido en localStorage
+            actualizarTotalPedido();
+
+            // Reiniciar el contador
+            counters[buttonNumber] = 0;
+
+            // Mostrar el botón de hacer pedido si hay productos
+            if (productos.length > 0) {
+                document.getElementById('hacerPedidoButton').style.display = 'block';
+            }
+
+            const btnTuPedido = document.getElementById("tuPedidoBtn");
+            btnTuPedido.style.display = productos.length > 0 ? 'flex' : 'none';
+        }
+
+        function actualizarTotal() {
+            // Obtener la lista de productos del localStorage
+            const productosGuardados = JSON.parse(localStorage.getItem('pedido'));
+
+            // Inicializar el total de productos
+            let totalProductos = 0;
+
+            if (productosGuardados && productosGuardados.length > 0) {
+                // Sumar los precios totales de los productos en el pedido
+                totalProductos = productosGuardados.reduce((total, producto) => {
+                    return total + producto.producto.precioTotal;
+                }, 0);
+            }
+
+            // Sumar el total de productos con el total de extras
+            const totalFinal = totalProductos;
+
+            // Actualiza el total en el elemento HTML
+            const totalElement = document.getElementById('total');
+            if (totalElement) {
+                totalElement.textContent = `$${totalFinal.toFixed(2)}`;
+            }
+        }
+
+        function actualizarTotalPedido() {
+            const productosGuardados = JSON.parse(localStorage.getItem('pedido'));
+
+            let totalPedido = 0;
+
+            if (productosGuardados && productosGuardados.length > 0) {
+                totalPedido = productosGuardados.reduce((total, producto) => total + producto.producto.precioTotal, 0);
+            }
+
+            localStorage.setItem('totalPedido', totalPedido);
+        }
+
+        function toggleDropdown() {
+            const tuPedidoBtn = document.getElementById('tuPedidoBtn');
+            const pedidoDropdown = document.getElementById('pedidoDropdown');
+
+            // Togglear la visibilidad del div al hacer clic en el botón "Tu Pedido"
+            if (pedidoDropdown.style.display === 'none') {
+                actualizarPedido(); // Actualizar la lista de productos en el pedido
+                pedidoDropdown.style.display = 'flex';
+                pedidoDropdown.style.transition = 'transform 0.8s, opacity 0.8s';
+                pedidoDropdown.style.transform = 'translateY(0px)';
+                pedidoDropdown.style.opacity = '1';
+                flecha.classList.remove('flecha-abajo');
+                flecha.classList.add('flecha-arriba');
+            } else {
+                pedidoDropdown.style.transition = 'transform 0.8s , opacity 0.8s';
+                pedidoDropdown.style.transform = 'translateY(-50px)';
+                pedidoDropdown.style.opacity = '0';
+                flecha.classList.remove('flecha-arriba');
+                flecha.classList.add('flecha-abajo');
+                // Retrasar la ocultación para permitir que la transición tenga lugar
+                setTimeout(() => {
+                    pedidoDropdown.style.display = 'none';
+                }, 800);
+            }
+        }
+        function actualizarPedido() {
+            const pedidoDropdown = document.getElementById('pedidoDropdown');
+            const tuPedidoBtn = document.getElementById('tuPedidoBtn');
+            const btnHacerPedido = document.getElementById("hacerPedidoButton")
+
+            pedidoDropdown.innerHTML = '';
+
+            const productosGuardados = JSON.parse(localStorage.getItem('pedido'));
+
+            if (productosGuardados && productosGuardados.length > 0) {
+                let productoAnterior = null;
+
+                productosGuardados.forEach((producto, index) => {
+                    const productoDiv = document.createElement('div');
+                    productoDiv.className = 'producto-pedido';
+
+                    productoDiv.innerHTML = `${producto.producto.nombre} Cantidad: ${producto.producto.cantidad} Precio Total: $${producto.producto.precioTotal}`;
+
+                    if (producto.producto.extras && producto.producto.extras.length > 0) {
+                        productoDiv.innerHTML += ' (E)';
+                    }
+
+                    const eliminarBtn = document.createElement('button');
+                    eliminarBtn.textContent = 'x';
+                    eliminarBtn.className = 'eliminar-producto';
+                    eliminarBtn.onclick = function () {
+                        eliminarDelPedido(index);
+                        actualizarPedido();
+                    };
+                    productoDiv.appendChild(eliminarBtn);
+
+                    pedidoDropdown.appendChild(productoDiv);
+
+                    productoAnterior = { producto };
+                });
+
+                pedidoDropdown.style.display = 'flex';
+                tuPedidoBtn.style.display = 'block';
+            } else {
+                pedidoDropdown.style.display = 'none';
+                tuPedidoBtn.style.display = 'none';
+                btnHacerPedido.style.display = "none"
+
+            }
+        }
+
+        function eliminarDelPedido(index) {
+            const btnHacerPedido = document.getElementById("hacerPedidoButton")
+            const total = document.getElementById("total")
+
+            productos.splice(index, 1);
+            localStorage.setItem('pedido', JSON.stringify(productos));
+            actualizarTotal(); // Actualizar el total en la interfaz
+            actualizarTotalPedido(); // Actualizar el total del pedido en localStorage
+
+            if (total.textContent == '$0.00') {
+                btnHacerPedido.style.display = "none"
+            }
+        }
+
+        function eliminarDelPedido(index) {
+            const productoEliminado = productos[index];
+            const precioProductoEliminado = productoEliminado.producto.precioTotal;
+
+            productos.splice(index, 1); // Eliminar el producto del array de productos
+            localStorage.setItem('pedido', JSON.stringify(productos)); // Actualizar el localStorage con la nueva lista de productos
+
+            // Restar el precio del producto eliminado del total del pedido
+            const totalProductos = preciosTotalesProductos.reduce((total, precio) => total + precio, 0);
+            const totalPedidoActualizado = totalProductos - precioProductoEliminado;
+
+            preciosTotalesProductos = productos.map(producto => producto.producto.precioTotal); // Actualizar los precios totales de los productos
+
+            // Actualizar el totalPedido en cada objeto de producto
+            productos.forEach(producto => {
+                producto.totalPedido = totalPedidoActualizado;
+            });
+
+            actualizarTotal(); // Actualizar el total en la interfaz
+            actualizarPedido(); // Actualizar el pedido mostrado en la interfaz
+        }
+
+        function enviarPedidoWhatsApp() {
+            // Obtener la lista de productos del almacenamiento local
+            const productosGuardados = JSON.parse(localStorage.getItem('pedido'));
+            let totalPedido = JSON.parse(localStorage.getItem('totalPedido'));
+
+            if (productosGuardados && productosGuardados.length > 0) {
+                // Crear el mensaje para WhatsApp
+                let mensajeWhatsApp = `¡Hola Kaese! Quiero realizar un pedido:\n\n`;
+
+                // Recorrer cada producto en la lista de productos guardados
+                productosGuardados.forEach((producto) => {
+                    mensajeWhatsApp += `${producto.producto.nombre} - Cantidad: ${producto.producto.cantidad} - Precio: $${producto.producto.precio}\n`;
+
+
+                    // Agregar el precio total del producto
+                    mensajeWhatsApp += `Precio Total del Producto: $${producto.producto.precioTotal}\n\n`;
+                });
+
+                // Agregar el precio total del pedido obtenido del localStorage
+                mensajeWhatsApp += `Total del pedido: $${totalPedido}\n\n Muchas Gracias!`;
+
+                // Reemplazar 'NUMERO_DE_TELEFONO' con el número de WhatsApp al que deseas enviar el mensaje, asegurándote de quitar espacios o guiones
+                const numeroWhatsApp = '541126441000';
+
+                // Crear el enlace de WhatsApp utilizando 'https://wa.me/'
+                const enlaceWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeWhatsApp)}`;
+
+                // Redirigir a WhatsApp
+                window.location.href = enlaceWhatsApp;
+
+                // Imprimir en la consola para verificar el flujo
+                console.log('Pedido enviado por WhatsApp.');
+            } else {
+                console.error('No se encontró información de pedido almacenada.');
+            }
+        }
 
 
     </script>
