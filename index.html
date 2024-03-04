@@ -124,14 +124,17 @@
                 <p id="menu-title" onclick="toggleMenuSection()"><b>Menú</b></p>
 
                 <p id="parrafo-menu">Somos un emprendimiento familiar que tiene como meta proveer a tu negocio de
-                    productos innovadores y diferenciales.</p>
+                    productos innovadores y diferenciales. <br> <b>Venta mayorista</b></p>
 
 
                 <div class="menu-section" id="menu-section">
 
                     <div class="menu-button-container">
 
-                        <p>Selecciona una sección para ver los productos!</p>
+                        <p>Selecciona una sección para ver los productos, puedes ver las <br>
+                            <a href="#section-informacion" class="preguntas-frecuentes"> preguntas frecuentes</a> <br>
+                            para evitar cualquier problema con tu pedido
+                        </p>
 
                         <button class="menu-button main-menu-button" id="boton1" onclick="toggleSubMenu()">Linea
                             Pre-cocidos</button>
@@ -152,12 +155,6 @@
                 </div>
 
 
-
-
-
-
-
-
                 <div class="carousel-inner" id="hidden">
                     <div class="carousel-item">
                         <img src="./cuadraditas.webp" alt="First slide">
@@ -176,16 +173,30 @@
                     </div>
                 </div>
 
+            </section>
+
+            <section id="section-informacion">
+
+                <h2 class="titulo-informacion" style="margin-top: 30px;">Preguntas frecuentes
+                </h2>
+
+                <p class="texto-preguntas" style="margin-top: 0px;"> <b>¿Puedo hacer un pedido de 1kg o 2kg?</b><br>
+                    <b>NO</b>, la venta de los productos es por mayor, podes ver la información de cada producto para
+                    ver su presentacion.<br>
+                </p>
+
+                <p class="texto-preguntas" style="margin-top: 0px;"> <b>¿Se pueden hacer pedidos desde cualquier lugar?</b><br>
+                    <b>NO</b>, podes ver las zonas de reparto que estan especificadas más abajo.<br>
+                </p>
+
+
+                <h2 class="titulo-informacion">Ventajas
+                </h2>
+                <img class="ventajas" src="./ventajas.webp" alt="ventajas">
                 <div class="div-since">
                     <p class="text-since"><b>¡Ponéle fin a las pérdidas con el pan sobrante y asegurá tener stock!</b>
                     </p>
                 </div>
-            </section>
-
-            <section id="section-informacion">
-                <h2 class="titulo-informacion">Ventajas
-                </h2>
-                <img class="ventajas" src="./ventajas.webp" alt="ventajas">
 
 
                 <h2 class="titulo-informacion" style="margin-top: 30px;">Conservación
@@ -202,10 +213,38 @@
                     Se calienta el horno por 10 minutos a temperatura máxima.<br>
                     Se baja la temperatura a 180° y se pone el pan a hornear durante 6 o 7 minutos.</p>
 
+                    <section id="section-reparto">
+                        <div class="card-info">
+                            <div class="card-body">
+                                <h3 class="info" style="font-size: 30px;">Zonas de reparto</h3>
+        
+                                <img class="img-reparto" src="./zonas.webp" alt="Third slide">
+        
+                                <p class="text-info"><b>
+                                        Parte de los partidos de General San Martin y Tres de Febrero <br> Florida Oeste <br>
+                                        parte
+                                        de Munro <br>
+                                        y Villa Martelli</b>
+                                </p>
+        
+                                <img class="img-reparto" src="./envios.webp" alt="First slide">
+                            </div>
+                        </div>
+                    </section>        
+
                 <div class="card-info">
                     <div class="card-body">
                         <h3 class="info">Ubicación</h3>
                         <p class="text-info"><b>Sargento Cabral 4829</b><br>Billinghurst.<br>General San Martin.</p>
+
+                        <a href="https://www.google.com.ar/maps/place/Sgto.+Cabral+4829,+Billinghurst,+Provincia+de+Buenos+Aires/@-34.5668673,-58.5744912,19.08z/data=!4m5!3m4!1s0x95bcb9ec602db14d:0x37b3afb4f8bbd028!8m2!3d-34.5667863!4d-58.5740954?entry=ttu">
+                            <img class="mapa" src="./mapa.png" alt="mapa">
+                            <p class="info" style="margin-top: 0px;
+                            text-decoration: underline;"><b>visitar</b></p>
+                        </a>
+
+
+
                         <h3 class="info">Pagos</h3>
                         <p class="text-info">Aceptamos <b>efectivo</b>,<br>transferencia por <b>mercado pago</b> u otros
                         </p>
@@ -261,25 +300,6 @@
                     </div>
                 </div>
 
-            </section>
-
-            <section id="section-reparto">
-                <div class="card-info">
-                    <div class="card-body">
-                        <h3 class="info">Zonas de reparto</h3>
-
-                        <img class="img-reparto" src="./zonas.webp" alt="Third slide">
-
-                        <p class="text-info"><b>
-                                Parte de los partidos de General San Martin y Tres de Febrero <br> Florida Oeste <br>
-                                parte
-                                de Munro <br>
-                                y Villa Martelli</b>
-                        </p>
-
-                        <img class="img-reparto" src="./envios.webp" alt="First slide">
-                    </div>
-                </div>
             </section>
 
         </main>

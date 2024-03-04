@@ -6,7 +6,7 @@
 
   .gridHome {
     display: grid;
-    grid-template-rows: 2% 99% 1%;
+    grid-template-rows: 1% 99% 1%;
   }
 
   * {
@@ -244,8 +244,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
-    height: 28px;
+    justify-content: center;
+    margin: 10px;
   }
 
   .text-since {
@@ -262,6 +262,11 @@
     align-items: center;
     text-align: center;
     width: 100%;
+  }
+
+  .preguntas-frecuentes {
+    color: #26b884;
+    text-decoration-line: underline;
   }
 
   #parrafo-menu {
@@ -604,6 +609,13 @@
     text-align: center;
   }
 
+  .texto-preguntas {
+    margin-top: 0px;
+    padding: 23px;
+    font-size: 14px;
+    text-align: center;
+  }
+
   #section-contacto {
     display: flex;
     flex-direction: column;
@@ -816,6 +828,11 @@
     font-family: "Poppins";
     color: #26B884;
     margin: 15px 0px;
+  }
+
+  .mapa {
+    width: 276px;
+    border-radius: 20px;
   }
 
   .text-info {
