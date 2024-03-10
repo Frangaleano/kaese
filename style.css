@@ -266,6 +266,17 @@
     margin-bottom: -16px;
   }
 
+  #boton-como {
+    color: #26B884;
+    border-radius: 20px;
+    padding: 12px;
+    padding-left: 30px;
+    font-size: 17px;
+    padding-right: 30px;
+    animation: shadowAnimation 2s infinite;
+    font-family: 'Poppins';
+  }
+
   #section-menu {
     overflow: hidden;
     display: flex;
@@ -366,6 +377,14 @@
   }
 
   #subMenuTres {
+    display: none;
+    opacity: 0;
+    transform: translateY(-20px);
+    visibility: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+  }
+
+  #como {
     display: none;
     opacity: 0;
     transform: translateY(-20px);
@@ -488,7 +507,7 @@
   }
 
   #hacerPedidoButton {
-      transition: background-color 0.8s;
+    transition: background-color 0.8s;
     animation: shadowAnimationHacerPedido 1s infinite;
     position: fixed;
     bottom: 10px;
@@ -539,6 +558,7 @@
     border-radius: 30px;
     border: 2px solid #fcb502;
     width: 100%;
+    margin-top: 23px;
   }
 
   .producto-pedido {
@@ -625,6 +645,25 @@
     padding: 23px;
     font-size: 14px;
     text-align: center;
+  }
+
+  .pasos {
+    margin-top: 0px;
+    padding: 23px;
+    font-size: 12px;
+    text-align: center;
+    width: 200px;
+  }
+
+  .div-pasos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .img-pasos {
+    width: 120px;
+    height: 80px;
   }
 
   #section-contacto {
