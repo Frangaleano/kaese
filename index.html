@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <title>Kaese</title>
-    <meta name="description" content="Kaese Panes pre-cocidos! desde 2015 distribuyendo productos diferenciales y de alta rotación, Somos un emprendimiento familiar que tiene como meta proveer a tu negocio de productos innovadores y diferenciales.">
+    <meta name="description"
+        content="Kaese Panes pre-cocidos! desde 2015 distribuyendo productos diferenciales y de alta rotación, Somos un emprendimiento familiar que tiene como meta proveer a tu negocio de productos innovadores y diferenciales.">
     <link rel="shortcut icon" href="./logo-pan.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,6 +16,12 @@
 </head>
 
 <body>
+
+    <div class="intro-overlay">
+        <div class="logo-container">
+            <img src="./logo-pan.png" alt="logo" class="logo">
+        </div>
+    </div>
 
     <div class="gridHome">
 
@@ -123,10 +130,10 @@
 
 
 
-             <button id="boton-como" style="margin-top: 30px;" onclick="toggleComo()">¿Como utilizo el menú?
-             </button>
-             <div id="como" class="como">
-             </div>
+            <button id="boton-como" style="margin-top: 30px;" onclick="toggleComo()">¿Como utilizo el menú?
+            </button>
+            <div id="como" class="como">
+            </div>
 
 
 
@@ -196,7 +203,8 @@
                     ver su presentacion.<br>
                 </p>
 
-                <p class="texto-preguntas" style="margin-top: 0px;"> <b>¿Se pueden hacer pedidos desde cualquier lugar?</b><br>
+                <p class="texto-preguntas" style="margin-top: 0px;"> <b>¿Se pueden hacer pedidos desde cualquier
+                        lugar?</b><br>
                     <b>NO</b>, podes ver las zonas de reparto que estan especificadas más abajo.<br>
                 </p>
 
@@ -228,31 +236,33 @@
                     Se calienta el horno por 10 minutos a temperatura máxima.<br>
                     Se baja la temperatura a 180° y se pone el pan a hornear durante 6 o 7 minutos.</p>
 
-                    <section id="section-reparto">
-                        <div class="card-info">
-                            <div class="card-body">
-                                <h3 class="info" style="font-size: 30px;">Zonas de reparto</h3>
-        
-                                <img class="img-reparto" src="./zonas.webp" alt="Third slide">
-        
-                                <p class="text-info"><b>
-                                        Parte de los partidos de General San Martin y Tres de Febrero <br> Florida Oeste <br>
-                                        parte
-                                        de Munro <br>
-                                        y Villa Martelli</b>
-                                </p>
-        
-                                <img class="img-reparto" src="./envios.webp" alt="First slide">
-                            </div>
+                <section id="section-reparto">
+                    <div class="card-info">
+                        <div class="card-body">
+                            <h3 class="info" style="font-size: 30px;">Zonas de reparto</h3>
+
+                            <img class="img-reparto" src="./zonas.webp" alt="Third slide">
+
+                            <p class="text-info"><b>
+                                    Parte de los partidos de General San Martin y Tres de Febrero <br> Florida Oeste
+                                    <br>
+                                    parte
+                                    de Munro <br>
+                                    y Villa Martelli</b>
+                            </p>
+
+                            <img class="img-reparto" src="./envios.webp" alt="First slide">
                         </div>
-                    </section>        
+                    </div>
+                </section>
 
                 <div class="card-info">
                     <div class="card-body">
                         <h3 class="info">Ubicación</h3>
                         <p class="text-info"><b>Sargento Cabral 4829</b><br>Billinghurst.<br>General San Martin.</p>
 
-                        <a href="https://www.google.com.ar/maps/place/Sgto.+Cabral+4829,+Billinghurst,+Provincia+de+Buenos+Aires/@-34.5668673,-58.5744912,19.08z/data=!4m5!3m4!1s0x95bcb9ec602db14d:0x37b3afb4f8bbd028!8m2!3d-34.5667863!4d-58.5740954?entry=ttu">
+                        <a
+                            href="https://www.google.com.ar/maps/place/Sgto.+Cabral+4829,+Billinghurst,+Provincia+de+Buenos+Aires/@-34.5668673,-58.5744912,19.08z/data=!4m5!3m4!1s0x95bcb9ec602db14d:0x37b3afb4f8bbd028!8m2!3d-34.5667863!4d-58.5740954?entry=ttu">
                             <img class="mapa" src="./mapa.webp" alt="mapa">
                             <p class="info" style="margin-top: 0px;
                             text-decoration: underline;"><b>visitar</b></p>
@@ -448,7 +458,7 @@
                             <p id="parrafos-detalles"><b>Cantidad</b>: 20U. aprox. por Kg.</p>
                             <p id="parrafos-detalles"><b>Presentacion</b>: Bolsa de 5 Kg.</p>
                             <div class="div-detalles">
-                                <p>$9000 <br> $18000 x Kg</p>
+                                <p>$9000 <br> $1800 x Kg</p>
                                 <input class="radio-button" type="radio" name="galleta" value="9000">
                                 <button class="counter-button" onclick="updateCounter(1, 'decrement')">-</button>
                                 <span class="counter-value">0</span>
@@ -590,7 +600,7 @@
                             <p id="parrafos-detalles"><b>Cantidad</b>: 22U. aprox. por Kg.</p>
                             <p id="parrafos-detalles"><b>Presentacion</b>: Bolsa de 2 Kg.</p>
                             <div class="div-detalles">
-                                <p>$5500 <br> $27500 x Kg</p>
+                                <p>$5500 <br> $2750 x Kg</p>
                                 <input class="radio-button" type="radio" name="pan negro" value="5500">
                                 <button class="counter-button" onclick="updateCounter(5, 'decrement')">-</button>
                                 <span class="counter-value">0</span>
@@ -1133,6 +1143,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
+
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const introOverlay = document.querySelector('.intro-overlay');
+                introOverlay.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Permite el desplazamiento después de la animación
+            }, 2300);
+        });
+    </script>
 
 </body>
 
